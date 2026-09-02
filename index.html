@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#f4d8ed">
+
+  <title>Hioshicos ?</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Nunito:wght@600;700;800&display=swap"
+    rel="stylesheet"
+  >
+
+  <style>
+
+    /* =====================================================
+       EASY SETTINGS
+    ===================================================== */
+
+    :root {
+
+      /* Main colors */
+      --pink: #e9a9d3;
+      --pink-light: #f5cce6;
+      --pink-soft: #fae7f3;
+
+      --lavender: #c9b5ec;
+      --lavender-light: #e4d9f5;
+
+      --text: #75556f;
+      --text-light: #96758e;
+
+      --white: rgba(255,255,255,.78);
+
+      /* Shadows */
+      --card-shadow:
+        0 20px 55px rgba(167, 112, 157, .20);
+
+      --button-shadow:
+        0 13px 27px rgba(170, 108, 160, .16);
+    }
+
+
+    /* =====================================================
+       RESET
+    ===================================================== */
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      width: 100%;
+      min-height: 100%;
+    }
+
+    body {
+      min-height: 100vh;
+
+      overflow-x: hidden;
+
+      font-family: "Nunito", sans-serif;
+
+      color: var(--text);
+
+      background:
+        radial-gradient(
+          circle at 15% 12%,
+          rgba(255,255,255,.85) 0,
+          rgba(255,255,255,0) 25%
+        ),
+
+        radial-gradient(
+          circle at 90% 25%,
+          rgba(222,208,247,.85) 0,
+          rgba(222,208,247,0) 31%
+        ),
+
+        radial-gradient(
+          circle at 40% 100%,
+          rgba(255,218,237,.75) 0,
+          rgba(255,218,237,0) 35%
+        ),
+
+        linear-gradient(
+          145deg,
+          #f3d8e9 0%,
+          #f9e7f1 45%,
+          #e8ddf4 100%
+        );
+    }
+
+
+    /* =====================================================
+       PAGE
+    ===================================================== */
+
+    .page {
+      width: 100%;
+      min-height: 100vh;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      padding: 0;
+    }
+
+
+    /* =====================================================
+       MAIN CARD
+    ===================================================== */
+
+    .card {
+      position: relative;
+
+      width: min(438px, 100vw);
+      min-height: 605px;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      padding:
+        58px
+        30px
+        28px;
+
+      overflow: hidden;
+
+      border-radius: 0 0 34px 34px;
+
+      border:
+        1px solid rgba(255,255,255,.75);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,248,252,.74),
+          rgba(255,238,248,.66),
+          rgba(238,228,248,.67)
+        );
+
+      box-shadow:
+        var(--card-shadow);
+
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+    }
+
+
+    /*
+      Subtle inner glow
+    */
+
+    .card::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 0;
+
+      pointer-events: none;
+
+      background:
+        radial-gradient(
+          circle at 50% 18%,
+          rgba(255,255,255,.75),
+          transparent 34%
+        );
+
+      opacity: .7;
+    }
+
+
+    /* =====================================================
+       AVATAR
+    ===================================================== */
+
+    .avatar-container {
+      position: relative;
+
+      width: 174px;
+      height: 174px;
+
+      margin-bottom: 22px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      z-index: 3;
+
+      animation:
+        avatarIn .7s ease both;
+    }
+
+
+    /*
+      Pink circular frame
+    */
+
+    .avatar-frame {
+      position: relative;
+
+      width: 151px;
+      height: 151px;
+
+      padding: 7px;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          145deg,
+          #f5bdda,
+          #edb5d7
+        );
+
+      box-shadow:
+        0 5px 20px rgba(214, 135, 180, .18),
+        0 0 0 1px rgba(255,255,255,.55);
+    }
+
+
+    .avatar-frame::after {
+      content: "";
+
+      position: absolute;
+
+      inset: -5px;
+
+      border-radius: 50%;
+
+      border:
+        2px solid rgba(239,177,213,.62);
+
+      pointer-events: none;
+    }
+
+
+    .avatar {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      border-radius: 50%;
+
+      background:
+        linear-gradient(
+          135deg,
+          #f3d5e6,
+          #ddd3f1
+        );
+    }
+
+
+    /* =====================================================
+       TINY DECORATIONS AROUND AVATAR
+    ===================================================== */
+
+    .leaf {
+      position: absolute;
+
+      width: 15px;
+      height: 8px;
+
+      border-radius:
+        100% 0 100% 0;
+
+      background: #a9c59d;
+
+      opacity: .82;
+
+      z-index: 5;
+    }
+
+    .leaf.one {
+      left: 9px;
+      top: 79px;
+
+      transform: rotate(25deg);
+    }
+
+    .leaf.two {
+      right: 8px;
+      top: 73px;
+
+      transform: rotate(-25deg);
+    }
+
+    .leaf.three {
+      right: 14px;
+      bottom: 48px;
+
+      transform: rotate(30deg);
+    }
+
+
+    /* tiny floating petal */
+
+    .tiny-petal {
+      position: absolute;
+
+      width: 8px;
+      height: 13px;
+
+      border-radius: 80% 20% 80% 20%;
+
+      background: #efb8d8;
+
+      opacity: .75;
+
+      z-index: 2;
+    }
+
+    .tiny-petal.one {
+      left: 22px;
+      top: 10px;
+
+      transform: rotate(30deg);
+    }
+
+    .tiny-petal.two {
+      right: 19px;
+      top: 20px;
+
+      transform: rotate(-35deg);
+
+      background: #d9c9ef;
+    }
+
+
+    /* =====================================================
+       NAME
+    ===================================================== */
+
+    .name {
+      position: relative;
+
+      z-index: 5;
+
+      font-family: "Fredoka", sans-serif;
+
+      font-size: clamp(
+        43px,
+        11vw,
+        54px
+      );
+
+      line-height: 1;
+
+      font-weight: 700;
+
+      letter-spacing: -.8px;
+
+      margin-bottom: 17px;
+
+      /*
+        Pink ? lavender text
+      */
+
+      background:
+        linear-gradient(
+          90deg,
+          #df91c7 5%,
+          #d69aca 42%,
+          #bda7e8 100%
+        );
+
+      -webkit-background-clip: text;
+      background-clip: text;
+
+      -webkit-text-fill-color: transparent;
+
+      filter:
+        drop-shadow(
+          0 4px 7px rgba(186,126,171,.12)
+        );
+
+      animation:
+        fadeUp .65s .1s ease both;
+    }    }
+
+
+    /* =====================================================
+       DESCRIPTION
+    ===================================================== */
+
+    .description {
+      position: relative;
+
+      z-index: 5;
+
+      max-width: 340px;
+
+      margin-bottom: 27px;
+
+      text-align: center;
+
+      font-size: 14px;
+
+      line-height: 1.35;
+
+      font-weight: 800;
+
+      color: #80647a;
+
+      animation:
+        fadeUp .65s .18s ease both;
+    }
+
+
+    /* =====================================================
+       BUTTONS
+    ===================================================== */
+
+    .buttons {
+      position: relative;
+
+      z-index: 10;
+
+      width: 100%;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 14px;
+
+      animation:
+        fadeUp .65s .26s ease both;
+    }
+
+
+    .button {
+      position: relative;
+
+      width: 100%;
+      height: 63px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 999px;
+
+      border:
+        1px solid rgba(255,255,255,.85);
+
+      text-decoration: none;
+
+      font-family: "Nunito", sans-serif;
+
+      font-size: 17px;
+
+      font-weight: 800;
+
+      color: #704f69;
+
+      background:
+        linear-gradient(
+          105deg,
+          rgba(244,183,219,.91),
+          rgba(207,177,239,.91)
+        );
+
+      box-shadow:
+        var(--button-shadow),
+        inset 0 1px 0 rgba(255,255,255,.9);
+
+      transition:
+        transform .25s ease,
+        box-shadow .25s ease,
+        filter .25s ease;
+    }
+
+
+    .button:hover {
+      transform:
+        translateY(-3px)
+        scale(1.015);
+
+      box-shadow:
+        0 17px 34px rgba(165,105,157,.21),
+        inset 0 1px 0 rgba(255,255,255,.95);
+
+      filter: brightness(1.025);
+    }
+
+
+    .button:active {
+      transform:
+        translateY(-1px)
+        scale(.99);
+    }
+
+
+    /*
+      VIP
+    */
+
+    .button.vip {
+      background:
+        linear-gradient(
+          105deg,
+          #efb1d5 0%,
+          #e7b6df 45%,
+          #c9b2ec 100%
+        );
+    }
+
+
+    /*
+      FREE
+    */
+
+    .button.free {
+      background:
+        linear-gradient(
+          105deg,
+          rgba(251,226,242,.9),
+          rgba(229,215,243,.9)
+        );
+    }
+
+
+  
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer {
+      position: relative;
+
+      z-index: 5;
+
+      margin-top: 27px;
+
+      font-size: 12px;
+
+      line-height: 1.4;
+
+      font-weight: 700;
+
+      color: #90758a;
+
+      text-align: center;
+
+      animation:
+        fadeUp .65s .35s ease both;
+    }
+
+
+    .footer .flower {
+      display: inline-block;
+
+      margin-left: 3px;
+
+      font-size: 14px;
+
+      transform: translateY(1px);
+    }
+
+
+    /* =====================================================
+       RANDOM TINY BACKGROUND DETAILS
+    ===================================================== */
+
+    .background-detail {
+      position: absolute;
+
+      pointer-events: none;
+
+      z-index: 1;
+
+      opacity: .5;
+    }
+
+
+    .detail-one {
+      left: 49px;
+      top: 257px;
+
+      width: 3px;
+      height: 3px;
+
+      border-radius: 50%;
+
+      background: #e9a8cf;
+    }
+
+
+    .detail-two {
+      right: 30px;
+      top: 315px;
+
+      width: 3px;
+      height: 3px;
+
+      border-radius: 50%;
+
+      background: #c7aee4;
+    }
+
+
+    .detail-three {
+      left: 67px;
+      bottom: 151px;
+
+      width: 4px;
+      height: 4px;
+
+      border-radius: 50%;
+
+      background: #edb7d6;
+    }
+
+
+    /* =====================================================
+       ANIMATIONS
+    ===================================================== */
+
+    @keyframes avatarIn {
+
+      from {
+        opacity: 0;
+        transform: scale(.9);
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+
+    @keyframes fadeUp {
+
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+
+    /* =====================================================
+       MOBILE
+    ===================================================== */
+
+    @media (max-width: 480px) {
+
+      .card {
+        width: 100vw;
+
+        min-height: 100vh;
+
+        padding:
+          57px
+          30px
+          30px;
+
+        border-radius:
+          0
+          0
+          34px
+          34px;
+      }
+
+      .avatar-container {
+        width: 165px;
+        height: 165px;
+
+        margin-bottom: 20px;
+      }
+
+      .avatar-frame {
+        width: 143px;
+        height: 143px;
+      }
+
+      .name {
+        font-size: 46px;
+      }
+
+      .description {
+        font-size: 13.5px;
+        max-width: 330px;
+      }
+
+      .button {
+        height: 63px;
+        font-size: 17px;
+      }
+    }
+
+
+    @media (max-width: 360px) {
+
+      .card {
+        padding-left: 20px;
+        padding-right: 20px;
+      }
+
+      .avatar-container {
+        width: 150px;
+        height: 150px;
+      }
+
+      .avatar-frame {
+        width: 132px;
+        height: 132px;
+      }
+
+      .name {
+        font-size: 42px;
+      }
+
+      .description {
+        font-size: 12.5px;
+      }
+
+      .button {
+        height: 59px;
+      }
+    }
+
+
+    /* =====================================================
+       REDUCED MOTION
+    ===================================================== */
+
+    @media (prefers-reduced-motion: reduce) {
+
+      *,
+      *::before,
+      *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+    <section class="card">
+
+      <!-- Small background details -->
+      <span class="background-detail detail-one"></span>
+      <span class="background-detail detail-two"></span>
+      <span class="background-detail detail-three"></span>
+
+
+      <!-- =================================================
+           AVATAR
+      ================================================== -->
+
+      <div class="avatar-container">
+
+        <div class="tiny-petal one"></div>
+        <div class="tiny-petal two"></div>
+
+        <span class="leaf one"></span>
+        <span class="leaf two"></span>
+        <span class="leaf three"></span>
+
+        <div class="avatar-frame">
+
+          <img
+            id="avatar"
+            class="avatar"
+            src=""
+            alt="Hioshicos"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+           NAME
+      ================================================== -->
+
+      <h1 class="name">
+        Hioshicos
+      </h1>
+
+
+      <!-- =================================================
+           DESCRIPTION
+      ================================================== -->
+
+      <p class="description">
+        A cosplayer who brings your fantasies to life
+      </p>
+
+
+      <!-- =================================================
+           BUTTONS
+      ================================================== -->
+
+      <div class="buttons">
+
+        <a
+  id="vipLink"
+  class="button vip"
+  href="#"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+
+  VIP content
+
+  <span class="sparkle"></span>
+</a>
+
+<a
+  id="freeLink"
+  class="button free"
+  href="#"
+  target="_blank"
+  rel="noopener noreferrer"
+>
+  
+  FREE content
+</a>
+
+      </div>
+
+
+      <!-- =================================================
+           FOOTER
+      ================================================== -->
+
+      <div class="footer">
+  made with love, sprinkled with petals
+</div>
+
+    </section>
+
+  </main>
+
+
+  <script>
+
+    /* =====================================================
+       CHANGE ONLY THESE 3 VARIABLES
+    ===================================================== */
+
+    const AVATAR_URL = "AVATAR.jpg";
+
+    const VIP_URL = "https://onlyfans.com/hioshicos";
+
+    const FREE_URL = "https://onlyfans.com/hioshi.cos";
+
+
+    /* =====================================================
+       AUTOMATIC SETUP
+    ===================================================== */
+
+    document.getElementById("avatar").src = AVATAR_URL;
+
+    document.getElementById("vipLink").href = VIP_URL;
+
+    document.getElementById("freeLink").href = FREE_URL;
+
+  </script>
+
+</body>
+</html>
+
